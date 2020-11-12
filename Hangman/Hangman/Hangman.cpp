@@ -16,37 +16,50 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <list>
+using namespace std;
 //-------------------------------------------------------------------------------------------------
 
 
 //-------------------------------------------------------------------------------------------------
 //                                         Main Program.                                             
 //-------------------------------------------------------------------------------------------------
-void read_text_file()
+list<string> read_text_file()
 {
-    std::string line;
-    std::ifstream text_file ("word_list.txt");
-    if (text_file.is_open())
+    string line;
+    list<string> word_List;
+    ifstream data_file ("word_list.txt");
+
+    if (data_file.is_open())
     {
-        while (std::getline(text_file, line))
+        while (getline(data_file, line))
         {
-            std::cout << line << std::endl;
+            word_List.push_back(line);
         }
-        text_file.close();
+        data_file.close();
     }
 
     else
     {
-        std::cout << "Error - Unable to open file.";
+        cout << "Error - Unable to open file.";
     }
 
+    return word_List;
 }
 //-------------------------------------------------------------------------------------------------
 
 
 void play_Hangman()
 {
-    read_text_file();
+    list<string> word_List = read_text_file();
+
+    // Display the contents of the list.
+    for (string v : word_List)
+    {
+        cout << v << "\n";
+    }
+
+
 }
 //-------------------------------------------------------------------------------------------------
 
