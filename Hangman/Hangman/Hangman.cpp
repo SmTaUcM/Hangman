@@ -17,6 +17,10 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include <cstdlib>
+#include <ctime>
+#include <iterator>
+#include <algorithm>
 using namespace std;
 //-------------------------------------------------------------------------------------------------
 
@@ -45,28 +49,35 @@ list<string> read_text_file()
     }
 
     return word_List;
-}
-//-------------------------------------------------------------------------------------------------
+}//------------------------------------------------------------------------------------------------
 
 
 void play_Hangman()
 {
+    // Read in the words from the text file and select one at random.
     list<string> word_List = read_text_file();
-
-    // Display the contents of the list.
+    /*// Display the contents of the list.
     for (string v : word_List)
     {
         cout << v << "\n";
-    }
+    }*/
 
+    // Generate a randum number.
+    srand(time(nullptr));  // Seed the random number generator.
+    int random_Int = rand() % word_List.size(); // Generate the random number.
 
-}
-//-------------------------------------------------------------------------------------------------
+    // Retrieve the randomly selected word from the list.
+    list<string>::iterator it = word_List.begin(); // Create iterator pointing to first element
+    advance(it, random_Int); // Advance the iterator by 'random_Int' positions.
+
+    // Ouput the randomly chosen word.
+    const string word = *it;
+    cout << "Word to guess = " << word << endl;
+}//------------------------------------------------------------------------------------------------
 
 
 int main()
 {
     play_Hangman();
     return 0;
-}
-//-------------------------------------------------------------------------------------------------
+}//------------------------------------------------------------------------------------------------
