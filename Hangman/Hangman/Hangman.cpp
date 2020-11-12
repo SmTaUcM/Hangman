@@ -52,6 +52,17 @@ list<string> read_text_file()
 }//------------------------------------------------------------------------------------------------
 
 
+string gen_Guess_Str(string guess_Word)
+{
+    string guess_Str;
+    for (int i = 0; i < guess_Word.size(); i++)
+    {
+        guess_Str += "*";
+    }
+    return guess_Str;
+}
+
+
 void play_Hangman()
 {
     // Read in the words from the text file and select one at random.
@@ -73,6 +84,8 @@ void play_Hangman()
     // Ouput the randomly chosen word.
     const string word = *it;
     cout << "Word to guess = " << word << endl;
+    string guess_Str = gen_Guess_Str(word);
+    cout << "Word to guess = " << guess_Str << endl;
 }//------------------------------------------------------------------------------------------------
 
 
