@@ -86,6 +86,14 @@ void play_Hangman()
     cout << "Word to guess = " << word << endl;
     string guess_Str = gen_Guess_Str(word);
     cout << "Word to guess = " << guess_Str << endl;
+
+
+
+    // Iterate though the word to guess.
+    for (int index = 0; index < word.size(); index++)
+    {
+        cout << word[index] << " ";
+    }
 }//------------------------------------------------------------------------------------------------
 
 
