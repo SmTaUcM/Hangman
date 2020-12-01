@@ -73,6 +73,12 @@ void play_Hangman()
         cout << v << "\n";
     }*/
 
+    // initialise local variables.
+    int guesses = 7;
+    char guess_char = 0;
+    string guess_str;
+    bool playing = true;
+
     // Generate a randum number.
     srand(time(nullptr));  // Seed the random number generator.
     int random_Int = rand() % word_List.size(); // Generate the random number.
@@ -84,15 +90,41 @@ void play_Hangman()
     // Ouput the randomly chosen word.
     const string word = *it;
     cout << "Word to guess = " << word << endl;
-    string guess_Str = gen_Guess_Str(word);
-    cout << "Word to guess = " << guess_Str << endl;
+    guess_str = gen_Guess_Str(word);
+    //cout << "Word to guess = " << guess_str << endl;
 
+    // Main game loop.
+    while (playing == true)
+    {
+        // Prompt the user with the state of the word to guess.
+        cout << "You have " << guesses << " guess(es) left." << endl;
+        cout << "The word to guess is: " << guess_str << endl;
 
+        // Prompt the user for input, ensuring that only a single alphabetic character is used.
+        while (not isalpha(guess_char))
+        {
+            cout << "Please enter your next guess: ";
+            cin >> guess_char;
+            //cout << "Entered: " << guess_char << endl;
+
+            // Test to see if the character entered is in the word to guess.
+            if (word.find(guess_char) != string::npos)
+            {
+                cout << "Yes" << endl;
+            }
+            else
+            {
+                cout << "No" << endl;
+            }
+        }
+
+        playing = false;
+    }
 
     // Iterate though the word to guess.
     for (int index = 0; index < word.size(); index++)
     {
-        cout << word[index] << " ";
+        //cout << word[index] << " ";
     }
 }//------------------------------------------------------------------------------------------------
 
